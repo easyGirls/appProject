@@ -1,0 +1,94 @@
+{
+    "beddings":[
+        {
+            "id":"1",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        },
+        {
+           "id":"2",
+           "ImageOne":"/static/img/article-default.png",
+           "nametwo":"come here",
+           "name":"发现生活中的美",
+           "Price":"998"
+        },
+        {
+           "id":"3",
+           "ImageOne":"/static/img/article-default.png",
+           "nametwo":"come here",
+           "name":"发现生活中的美",
+           "Price":"998"
+        },
+        {
+            "id":"4",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        },
+        {
+            "id":"5",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        },
+        {
+            "id":"6",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        }    
+    ],
+    "motos":[
+        {
+            "id":"4",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        },
+        {
+            "id":"3",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        }
+    ],
+    "MotoZs":[
+        {
+            "id":"1",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        },
+        {
+            "id":"2",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        }
+    ],    
+    "z2s":[
+        {
+            "id":"5",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        },
+        {
+            "id":"6",
+            "ImageOne":"/static/img/article-default.png",
+            "nametwo":"come here",
+            "name":"发现生活中的美",
+            "Price":"998"
+        }
+    ]
+ }
