@@ -7,6 +7,7 @@ import cart from '@/components/cart'               //导入购物车页
 import my from '@/components/my'                   //导入"我的"页
 import goodDetail from '@/components/goodDetail'   //导入商品详情页
 import order from '@/components/order'             //导入订单页
+import orderDetail from '@/components/orderDetail' //导入下订单页面
 import author from '@/components/author'           //导入个人信息页
 import bedding from '@/components/bedding'         //导入床上用品页
 import information from '@/components/information' //导入“全文阅读”页
@@ -26,6 +27,7 @@ export const router = new Router({
     { path: '/my',name: 'my',component: my },
     { path: '/goodDetail', name: 'goodDetail',component: goodDetail },
     { path: '/order',name: 'order',component: order },
+    { path: '/orderDetail',name: 'orderDetail',component: orderDetail },
     { path: '/author', name: 'author',component: author },
     { path: '/bedding' ,name:'bedding' ,component:bedding},
     { path: '/information' ,name:'information' ,component:information},

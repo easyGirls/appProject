@@ -14,7 +14,7 @@
             <p>您暂无订单</p>
         </div>
         <!-- 有订单状态 -->
-        <div class="orderMain">
+        <div class="orderMain" v-else>
             <div class="_bedding_twoMain">
                 <mt-navbar v-model="selected" >
                     <mt-tab-item id="tab-container1">全部</mt-tab-item>
@@ -124,8 +124,10 @@ export default {
       }
     },
     computed:{
-       orders(){
-            return this.$store.state.orders    
+        orders(){
+            var keyCode = this.$store.state.keyCode;
+            // console.log('aaa',this.$store.state.orders,keyCode)
+            return this.$store.state.orders[keyCode];    
         },
     },
     methods:{

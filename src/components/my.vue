@@ -1,11 +1,10 @@
 <template>
   <div class="my">
-    <div class="myHeader">{{my}}</div>
+    <div class="myHeader">{{my}}<p class="exit" @click="exit">退出</p></div>
     <div class="myMain">
       <div class="Main">
         <img src="/static/img/tou.jpg" alt="头像">
         <p>{{myName}}</p>
-        <p @click="exit">退出</p>
       </div>
     </div>
     <div class="MyBox">
@@ -18,7 +17,7 @@
       <div class="myCollection" @click="author">
         <div class="Order">
           <i class="iconfont icon-zuozhe"></i>
-          <p>联系我</p>
+          <p>个人资料</p>
         </div>
       </div>
     </div> 
@@ -38,7 +37,10 @@
     },
     methods:{
       exit: function(){
-          // localStorage.clear()
+          // localStorage.removeItem("userInformation");
+          // localStorage.removeItem("goodDetails");
+          // localStorage.removeItem("carts");
+          // localStorage.removeItem("orders");
           localStorage.removeItem("keyCode");
           this.$store.state.keyCode = -1;
           console.log('userInformation',this.$store.state.userInformation);
@@ -64,7 +66,11 @@
         background: white;
         font-size: 0.41rem;
    }
-   
+   .exit{
+        float:right;    
+        padding-right: 0.5rem;
+        font-size: 0.4rem;
+   }
    .myMain{
        height: 100%;
        background: white;

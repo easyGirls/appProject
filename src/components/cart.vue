@@ -12,7 +12,7 @@
             <ul>
                 <li v-for="(cart,index) in carts" class="cartList">
                     <div class="cartImage">
-                        <input type="checkbox" class="checkbox" ref="checkedbox" @click='selectedProduct(index)'/>
+                        <input type="checkbox" class="checkbox" v-model="cart.checked"/>
                         <img v-bind:src="cart.imgone" >
                     </div>
 
@@ -64,7 +64,7 @@
             return{
                 carts: [],
                 //用于存储购物车数据，为了监听购物车商品数据变化时重新初始化购物车商品列表
-                carts2: store.state.carts,
+                carts2: store.state.carts[store.state.keyCode],
             }
         },
         mounted: function(){
@@ -89,35 +89,36 @@
         },
         methods:{
             ...mapMutations([
-                'shanchu','add','reduce','settlement'
+                'shanchu','add','reduce'
+                // ,'settlement'
             ]),
             //初始化购物车
             initCarts: function(){
-                var cartsData = this.$store.state.carts;
+                var cartsData = this.$store.state.carts[store.state.keyCode];
                 this.carts = [];
                 for(var i=0;i<cartsData.length;i++){
                     this.carts.push({ checked: false,id:cartsData[i].id,name:cartsData[i].name,price:cartsData[i].price,imgone:cartsData[i].imgone,value:cartsData[i].value });
                 }
             },
             //勾选复选框选中商品
-            selectedProduct: function(index){
+            // selectedProduct: function(index){
                 //为后面计算总价设置的，其值改变不了复选框的状态
-                if(this.$refs.checkedbox[index].checked === true){
-                    this.carts[index].checked = true;
-                }else{
-                    this.carts[index].checked = false;
-                }  
-            },
+                // if(this.$refs.checkedbox[index].checked === true){
+                //     this.carts[index].checked = true;
+                // }else{
+                //     this.carts[index].checked = false;
+                // }  
+            // },
             //全选
             selectedMore: function(){
                 if(this.$refs.checkedMore.checked === true){
                     for(var i=0;i<this.carts.length;i++){
-                        this.$refs.checkedbox[i].checked = true;
+                        // this.$refs.checkedbox[i].checked = true;
                         this.carts[i].checked = true;
                     }
                 }else{
                     for(var i=0;i<this.carts.length;i++){
-                        this.$refs.checkedbox[i].checked = false;
+                        // this.$refs.checkedbox[i].checked = false;
                         this.carts[i].checked = false;
                     }
                 }
