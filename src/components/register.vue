@@ -95,7 +95,7 @@
 	 		 
 	 	}, 
 	 	methods:{ 
-		 	//检查用户名是否为空
+		 	//检查用户名
 		 	checkUsername: function(){
 		 		var element = document.getElementsByClassName('usernameText');
 		 		var userInformation = this.$store.state.userInformation;
@@ -122,7 +122,7 @@
 					this.usernameKey = true;
 				}
 		 	},
-		 	//检查邮箱是否为空
+		 	//检查邮箱
 		 	checkEmail: function(){
 		 		var element = document.getElementsByClassName('emailText');
 		 		var reg2=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
@@ -132,14 +132,14 @@
 		 			this.emailKey = false;
 				}else if(!reg2.test(this.rulesForm.email)){ 
 					this.flagData.emailFlag = true;
-		 			element[0].innerText = '邮箱必须包含@';
+		 			element[0].innerText = '邮箱输入错误';
 		 			this.emailKey = false;
 			 	}else{
 			 		this.flagData.emailFlag = false;
 			 		this.emailKey = true;
 			 	}
 		 	},
-		 	//检查手机号码是否为空
+		 	//检查手机号码
 		 	checkPhone: function(){
 		 		var elementPhome = document.getElementsByClassName('phoneText');
 		 		var reg=/^[0-9]{11}$/;
@@ -185,7 +185,7 @@
 					this.passwordKey = true;
 				}
 		 	},
-		 	//检查重复密码是否为空
+		 	//检查重复密码
 		 	checkDbpassword: function(){
 		 		if(!this.rulesForm.dbpassword){ 
 		 			this.flagData.dbpasswordFlag = true;

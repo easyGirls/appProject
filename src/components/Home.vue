@@ -24,7 +24,7 @@
 	          		</div>
 	          	</li>
 	          	<li>
-	          		<div @click="chuangping">
+	          		<div @click="sofas">
 	          			<img src="/static/img/index/shafa.png" alt="沙发">
 	          			<span>沙发</span>
 	          		</div>

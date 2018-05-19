@@ -18,44 +18,40 @@
                 <!-- 全部 -->
                 <mt-tab-container-item id="tab-container1">
                     <ul style="margin-top: 2px;">
-                        <li class="_sofasList" v-for="(sofas,index) in list" @click="open(sofas.id)">
-                            <img v-bind:src="sofas.image" alt="图片">
-                            <h2>{{sofas.name}}</h2>
-                            <p>{{sofas.nametwo}}</p>
-                            <div>￥{{sofas.price}}</div>
+                        <li class="_sofasList" v-for="(sofas,index) in sofalists" @click="open(sofas.id)">
+                            <img v-bind:src="sofas.ImgF" alt="图片">
+                            <p>{{sofas.name}}</p>
+                            <div>￥{{sofas.Price}}</div>
                         </li>
                     </ul>
                 </mt-tab-container-item>
                 <!-- 布艺沙发 -->
                 <mt-tab-container-item id="tab-container2">
                     <ul style="margin-top: 2px;">
-                        <li class="_sofasList" v-for="(sofas,index) in charger" @click="open(sofas.id)">
-                            <img v-bind:src="sofas.image" alt="图片">
-                            <h2>{{sofas.name}}</h2>
-                            <p>{{sofas.nametwo}}</p>
-                            <div>￥{{sofas.price}}</div>
+                        <li class="_sofasList" v-for="(sofas,index) in fabric" @click="open(sofas.id)">
+                            <img v-bind:src="sofas.ImgF" alt="图片">
+                            <p>{{sofas.name}}</p>
+                            <div>￥{{sofas.Price}}</div>
                         </li>
                     </ul>
                 </mt-tab-container-item>
                 <!-- 北欧沙发 -->
                 <mt-tab-container-item id="tab-container3">
                     <ul style="margin-top: 2px;">
-                        <li class="_sofasList" v-for="(sofas,index) in protect" @click="open(sofas.id)">
-                            <img v-bind:src="sofas.image" alt="图片">
-                            <h2>{{sofas.name}}</h2>
-                            <p>{{sofas.nametwo}}</p>
-                            <div>￥{{sofas.price}}</div>
+                        <li class="_sofasList" v-for="(sofas,index) in nordic" @click="open(sofas.id)">
+                            <img v-bind:src="sofas.ImgF" alt="图片">
+                            <p>{{sofas.name}}</p>
+                            <div>￥{{sofas.Price}}</div>
                         </li>
                     </ul>
                 </mt-tab-container-item>
                 <!-- 简约沙发 -->
                 <mt-tab-container-item id="tab-container4">
                     <ul style="margin-top: 2px;">
-                        <li class="_sofasList" v-for="(sofas,index) in headset" @click="open(sofas.id)">
-                            <img v-bind:src="sofas.image" alt="图片">
-                            <h2>{{sofas.name}}</h2>
-                            <p>{{sofas.nametwo}}</p>
-                            <div>￥{{sofas.price}}</div>
+                        <li class="_sofasList" v-for="(sofas,index) in simple" @click="open(sofas.id)">
+                            <img v-bind:src="sofas.ImgF" alt="图片">
+                            <p>{{sofas.name}}<p>
+                            <div>￥{{sofas.Price}}</div>
                         </li>
                     </ul>
                 </mt-tab-container-item>
@@ -70,56 +66,56 @@ export default {
     data(){
         return{
             selected:"tab-container1",
-            list:[],
-            charger:[],
-            protect:[],
-            headset:[]
+            sofalists:[],
+            fabric:[],
+            nordic:[],
+            simple:[]
         }
     },
     mounted:function(){
         this.getData(),
-        this.chargerData(),
-        this.protectData(),
-        this.HeadsetData()
+        this.FabricData(),
+        this.NordicData(),
+        this.SimpleData()
     },
     methods:{
         getData:function(){
             var _this=this;
-            this.$http.get("/static/sofas.json").then(function(res){
-              for(var i=0,len=res.body.list.length;i<len;i++){
-                  var selData=res.body.list[i];
-                  var sofa=res.body.list[i].name;
-                  _this.list.push(selData)
+            this.$http.get("/static/sofa.json").then(function(res){
+              for(var i=0,len=res.body.SofaLists.length;i<len;i++){
+                  var selData=res.body.SofaLists[i];
+                  //var sofas=res.body.sofas[i].name;
+                  _this.sofalists.push(selData)
               }
           })
         },
-        chargerData:function(){
+        FabricData:function(){
             var _this=this;
-            this.$http.get("/static/sofas.json").then(function(res){
-              for(var i=0,len=res.body.charger.length;i<len;i++){
-                  var selData=res.body.charger[i];
-                  var sofa=res.body.charger[i].name;
-                  _this.charger.push(selData)
+            this.$http.get("/static/sofa.json").then(function(res){
+              for(var i=0,len=res.body.Fabric.length;i<len;i++){
+                  var selData=res.body.Fabric[i];
+                  //var fabric=res.body.Fabric[i].name;
+                  _this.fabric.push(selData)
               }
           })
         },
-        protectData:function(){
+        NordicData:function(){
             var _this=this;
-            this.$http.get("/static/sofas.json").then(function(res){
-              for(var i=0,len=res.body.protect.length;i<len;i++){
-                  var selData=res.body.protect[i];
-                  var sofa=res.body.protect[i].name;
-                  _this.protect.push(selData)
+            this.$http.get("/static/sofa.json").then(function(res){
+              for(var i=0,len=res.body.Nordic.length;i<len;i++){
+                  var selData=res.body.Nordic[i];
+                  //var nordic=res.body.Nordic[i].name;
+                  _this.nordic.push(selData)
               }
           })
         },
-        HeadsetData:function(){
+        SimpleData:function(){
             var _this=this;
-            this.$http.get("/static/sofas.json").then(function(res){
-              for(var i=0,len=res.body.headset.length;i<len;i++){
-                  var selData=res.body.headset[i];
-                  var sofa=res.body.headset[i].name;
-                  _this.headset.push(selData)
+            this.$http.get("/static/sofa.json").then(function(res){
+              for(var i=0,len=res.body.Simple.length;i<len;i++){
+                  var selData=res.body.Simple[i];
+                  var simple=res.body.Simple[i].name;
+                  _this.simple.push(selData)
               }
           })
         },
@@ -135,42 +131,30 @@ export default {
 
 
 <style>
-.sofas{
-    position: absolute;
-    background: white;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-} 
 .sofasHeader{
-    width: 100%;
-    z-index: 1;
-    height: 1.3rem;
-    line-height: 1.3rem;
-    font-size: 12px;
-    background: white;
     position: fixed;
+    width: 100%;
     -webkit-box-shadow: 0 0 10px #cecece;
     box-shadow: 0 0 10px #cecece;
-    text-align: center;
-    font-size: 0.41rem;
+    height: 1.3rem;
+    line-height: 1.3rem;
+    font-size: 0.35rem;
+    padding-left: 0.3rem;
+    background: white;
+    top: 0;
+    font-size: 0.41rem; 
+    z-index: 100;
 }
 .sofasHeader i{
     display: block;
     float: left;
     height: 50px;
-    padding-left: 0.3rem;
-    font-size: 0.71rem;
+    padding-right: 0.3rem;
+    font-size: 22px;
     color: black;
 }
-.sofasMain{
-    margin-top: 1.32rem;
-}
-
 ._sofasList{
-    height: 7.8rem;
+	height: 7rem;
     background: white;
     float: left;
     box-sizing: border-box;
@@ -181,41 +165,38 @@ export default {
     margin-top: 1px;
     list-style: none;
 }
-
-._sofasList img{
-    height: 3.6rem;
-    width: 4rem;
-    display: block;
-    margin: auto;
-    padding: 0.5rem;
+.sofasMain{
+    margin-top: 1.34rem;
 }
-._sofasList h2{
-    width: 90%; 
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    font-size: .4rem;
-    margin: auto;
-}
-
 ._sofasList p{
-    width: 3.8rem;
-    margin: 0 auto;
-    padding: 0;
-    height: 2.6em;
-    font-size: .22rem;
-    line-height: 1.4;
-    color: #000;
-    text-align: center;
-    word-break: break-all;
+    width: 94%;
     overflow: hidden;
-    padding-top: 0.2rem;
+    text-overflow: ellipsis;
+    margin: auto;
+    font-size: 0.35rem;
+    text-align: center;
 }
 ._sofasList div{
     text-align: center;
     color: red;
-    padding-top: 0.6rem;
+    margin-top: 10px;
+}
+._sofasList img{
+    height: 3.2rem;
+    width: 3.5rem;
+    display: block;
+    margin: auto;
+    padding: 0.5rem;
+}
+.mint-tab-item-label {
+    color: inherit;
+    font-size: 0.4rem;
+    line-height: 0.5rem;
+}
+.mint-header {
+    display: flex;
+    font-size: 0.5rem;
+    height: 50px;
+    line-height: 1;
 }
 </style>

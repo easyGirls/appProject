@@ -38,7 +38,7 @@
             		<div class="goodDetailBox">
               			<mt-navbar v-model="selected" >
                 			<mt-tab-item id="tab-container1">图文详情</mt-tab-item>
-                			<mt-tab-item id="tab-container2">商品配置</mt-tab-item>
+                			<mt-tab-item id="tab-container2">宝贝详情</mt-tab-item>
               			</mt-navbar>
               			<mt-tab-container v-model="selected" swipeable>
                 			<mt-tab-container-item id="tab-container1">
@@ -106,32 +106,33 @@ import store from '../vuex/store.js';
       }
     },
     methods:{
-      // 本地写个json数据文件，模拟后台将数据渲染出来
-      getData:function(){
-        var id = this.$route.query.id;
-          var _this = this;
+      	// 本地写个json数据文件，模拟后台将数据渲染出来
+      	getData:function(){
+        	var id = this.$route.query.id;
+          	var _this = this;
             this.$http.get("/static/goodDetail.json").then(function(res) {                      
                 for (var i = 0; i < res.body.goodDetails.length; i++) {
-                if (res.body.goodDetails[i].id == id) {
-                _this.goodDetails.push(res.body.goodDetails[i])
-              }
-            }
-          })
+                		if (res.body.goodDetails[i].id == id) {
+                			_this.goodDetails.push(res.body.goodDetails[i])
+              		}
+            	}
+          	})
         },
-            jia:function(index){
-                this.goodDetails[index].value++
-            },
-            jian:function(index){
-                if(this.goodDetails[index].value==1){
-                    this.goodDetails[index].value=1
-                }else{
-                    this.goodDetails[index].value--
-                }
-            },
-            // 点击按钮时，首先判断该商品是否在购物车已存在，如果存在则不再加入
-            add:function(index){
-                if(this.$store.state.keyCode != -1){
-                  // alert(0)
+        //购买数量的加减
+        jia:function(index){
+            this.goodDetails[index].value++
+        },
+        jian:function(index){
+            if(this.goodDetails[index].value==1){
+            	this.goodDetails[index].value=1
+            }else{
+                this.goodDetails[index].value--
+            }
+        },
+        // 点击按钮时，首先判断该商品是否在购物车已存在，如果存在则不再加入
+        add:function(index){
+            if(this.$store.state.keyCode != -1){
+               	// alert(0)
                    var idExist=this.$store.state.carts.find((todo)=>{
                       return todo.id==this.goodDetails[index].id;
                     })
