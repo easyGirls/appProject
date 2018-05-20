@@ -22,6 +22,6 @@ export default {
 body{
   padding-bottom:1.56rem; 
   font-family: '微软雅黑';
-  background: #F4F4F4;;
+  background: #F4F4F4;
 }
 </style>

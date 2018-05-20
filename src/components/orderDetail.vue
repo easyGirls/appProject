@@ -13,7 +13,10 @@
 			    <p class="newAddAddress">新增收货地址</p>
 			</div>
 		</div>
-		<div v-else class="receiveAddress">
+		<div v-else class="receiveAddress" @click="enterMyAddress">
+			<p class="receiver">收货人：{{ addressForm.receiver }}</p>
+			<p class="phone">{{ addressForm.phone }}</p>
+			<p class="address">地址：{{ addressForm.address }} <span class="enter">></span></p>
 		</div>
 		<!-- 商品信息 -->
 		<div class="productCnt">
@@ -52,15 +55,23 @@
 	export default {
 		data(){
 			return {
-				
+				addressForm: {
+					receiver: '',
+					phone: '',
+					address: ''
+				}
 			}
 		},
 		computed: {
 			address: function(){
-				return this.$store.state.address;
+				var keyCode = this.$store.state.keyCode;
+				console.log('sa',keyCode,this.$store.state.address[keyCode])
+				// 
+				return this.$store.state.address[keyCode];
 			},
 			orders: function(){
 	            var keyCode = this.$store.state.keyCode;
+	            // console.log('sa2',keyCode,this.$store.state.orders[keyCode])
 	            return this.$store.state.orders[keyCode];    
 	        },
 	        sumPrice: function(){
@@ -72,7 +83,7 @@
 	        }
 		},
 		mounted: function(){
-			
+			this.initAddress();
 		},
 		methods:{
 			//回退
@@ -81,7 +92,24 @@
 			},
 			//新增收货地址
 			addAddress: function(){
-				
+				this.$router.push('/addAddress');
+			},
+			//初始化地址
+			initAddress: function(){
+				for(var i=0;i<this.address.length;i++){
+					if(this.address[i].normalFlag === true){
+						this.addressForm.receiver = this.address[i].receiver;
+						this.addressForm.phone = this.address[i].phone;
+						this.addressForm.address = this.address[i].address;
+					}else{
+						this.addressForm.receiver = this.address[0].receiver;
+						this.addressForm.phone = this.address[0].phone;
+						this.addressForm.address = this.address[0].address;
+					}
+				}
+			},
+			enterMyAddress: function(){
+				this.$router.push('/myAddress');
 			}
 		}
 	}
@@ -200,5 +228,30 @@
 	    padding: 0.12rem;
 	    text-align: center;
 	    float: right;
+	}
+	.receiver{
+		width: 60%;
+		float: left;
+		font-size: 0.36rem;
+		line-height: 0.8rem;
+	}
+	.phone{
+		width: 40%;
+		/*padding-left: 0.1rem;*/
+		text-align: center;
+		float: left;
+		font-size: 0.36rem;
+		line-height: 0.8rem;
+	}
+	.address{
+		position: relative;
+		clear: left;
+		font-size: 0.36rem;
+		line-height: 0.8rem;
+	}
+	.enter{
+		position: absolute;
+		right: 1rem;
+		font-size: 0.41rem;
 	}
 </style>

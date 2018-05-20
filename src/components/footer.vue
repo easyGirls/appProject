@@ -51,6 +51,7 @@ export default {
       z-index: 100;
       background: E6E6E6;
       height: 2rem;
+      overflow: hidden;
     }
 .footer i{
   font-size: 0.65rem;

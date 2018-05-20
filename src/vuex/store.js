@@ -27,10 +27,11 @@ const store=new Vuex.Store({
             state.orders.push(orderData);
             //注册用户时，为每个用户创建一个收货地址数组
             var address = [];
-            state.orders.push(address);
+            state.address.push(address);
             localStorage.setItem("userInformation",JSON.stringify(state.userInformation));
             localStorage.setItem("carts",JSON.stringify(state.carts));
             localStorage.setItem("orders",JSON.stringify(state.orders));
+            localStorage.setItem("address",JSON.stringify(state.address));
         },
         //加入购物车
         addcarts:(state,data)=>{

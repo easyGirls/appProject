@@ -15,6 +15,8 @@ import news from '@/components/news'               //导入“文章”页
 import sofas from '@/components/sofas'             //导入"沙发"选项卡    
 import register from '@/components/register'       //导入"注册"页
 import login from '@/components/login'             //导入"登录"页
+import addAddress from '@/components/addAddress'   //导入新增地址页
+import myAddress from '@/components/myAddress'   //导入我的收货地址页
 import store from '../vuex/store.js';
 Vue.use(Router)                                    //初始化路由信息
 
@@ -28,6 +30,8 @@ export const router = new Router({
     { path: '/goodDetail', name: 'goodDetail',component: goodDetail },
     { path: '/order',name: 'order',component: order },
     { path: '/orderDetail',name: 'orderDetail',component: orderDetail },
+    { path: '/addAddress',name: 'addAddress',component: addAddress },
+    { path: '/myAddress',name: 'myAddress',component: myAddress },
     { path: '/author', name: 'author',component: author },
     { path: '/bedding' ,name:'bedding' ,component:bedding},
     { path: '/information' ,name:'information' ,component:information},

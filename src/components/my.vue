@@ -41,6 +41,7 @@
           // localStorage.removeItem("goodDetails");
           // localStorage.removeItem("carts");
           // localStorage.removeItem("orders");
+          // localStorage.removeItem("address");
           localStorage.removeItem("keyCode");
           this.$store.state.keyCode = -1;
           console.log('userInformation',this.$store.state.userInformation);
