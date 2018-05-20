@@ -124,6 +124,8 @@
 						address: this.newAddress.address });
 						localStorage.setItem("address",JSON.stringify(this.$store.state.address));
 						MessageBox.alert('添加成功','提示');
+						//添加成功后回退到上一步
+						this.$router.go(-1);
 						//清空
 						this.newAddress.receiver = '';
 						this.newAddress.phone = '';
@@ -145,10 +147,18 @@
 							}
 	                    }
 	                    if(flag){
+	                    	//如果当前添加的新地址设置为默认地址，就要把已存在的地址的normalFlag设为false
+	                    	if(this.checked === true){
+	                    		this.address.map((item) => {
+	                    			item.normalFlag = false;
+	                    		})
+	                    	}
 	                    	this.address.push({ normalFlag: this.checked,receiver: this.newAddress.receiver,phone: this.newAddress.phone,
 						        address: this.newAddress.address });
 	                    	localStorage.setItem("address",JSON.stringify(this.$store.state.address));
 	                    	MessageBox.alert('添加成功','提示');
+	                    	//添加成功后回退到上一步
+							this.$router.go(-1);
 	                    	//清空
 							this.newAddress.receiver = '';
 							this.newAddress.phone = '';
@@ -163,9 +173,17 @@
 									this.newAddress.address = '';
 									this.checked = '';
 								}else{
+									//如果当前添加的新地址设置为默认地址，就要把已存在的地址的normalFlag设为false
+			                    	if(this.checked === true){
+			                    		this.address.map((item) => {
+			                    			item.normalFlag = false;
+			                    		})
+			                    	}
 									this.address[index].normalFlag = this.checked;
 									localStorage.setItem("address",JSON.stringify(this.$store.state.address));
 									MessageBox.alert('修改成功','提示');
+									//添加成功后回退到上一步
+									this.$router.go(-1);
 									//清空
 									this.newAddress.receiver = '';
 									this.newAddress.phone = '';
@@ -238,5 +256,8 @@
 		position: absolute;
 		right: 0.5rem;
     	top: 0.4rem;
+	}
+	.mint-cell-wrapper{
+		background-image: none;
 	}
 </style>

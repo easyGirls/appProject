@@ -47,7 +47,7 @@
                     <div class="Total">合计：<span style="font-size: 0.54rem;color:#E3211E">￥{{this.sum()}}</span></div>
                 </div>
                 <div class="Settlementtwo" @click="submitOrder">
-                    <router-link :to="{name:'order'}" >提交订单</router-link>
+                    <router-link :to="{name:'orderDetail'}" >结算</router-link>
                 </div>
             </div>
         </div>
@@ -134,8 +134,9 @@
                 }
                 return sum;
             },
-            //提交订单
+            //结算
             submitOrder:function(){
+                var orderData = []; 
                 for(var i=0;i<this.carts.length;i++){
                     if(this.carts[i].checked === true){
                         var data={
@@ -149,9 +150,10 @@
                             number:this.carts[i].number,
                             
                         }
-                        this.$store.commit("addorder",data)
+                        orderData.push(data);
                     }
                 }
+                this.$store.commit("addorder",orderData);
             }
         },
         

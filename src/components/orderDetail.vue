@@ -46,12 +46,13 @@
 		</div>
 		<div class="submitOrderCnt">
 			<p class="sumPrice"><span class="priceField">合计：</span><span class="money">￥{{ sumPrice }}</span></p>
-			<p class="submitBtn">提交订单</p>
+			<p class="submitBtn" @click="submitDetailOrder">提交订单</p>
 		</div>
 	</div>
 </template>
 <script>
 	import store from '../vuex/store.js';
+	import { MessageBox } from 'mint-ui';
 	export default {
 		data(){
 			return {
@@ -59,13 +60,14 @@
 					receiver: '',
 					phone: '',
 					address: ''
-				}
+				},
+				
 			}
 		},
 		computed: {
 			address: function(){
 				var keyCode = this.$store.state.keyCode;
-				console.log('sa',keyCode,this.$store.state.address[keyCode])
+				// console.log('sa',keyCode,this.$store.state.address[keyCode])
 				// 
 				return this.$store.state.address[keyCode];
 			},
@@ -81,6 +83,14 @@
 	        	}
 	        	return sumPrice;
 	        }
+		},
+		watch:{
+			address: {
+				handler: function(val){
+					this.initAddress();
+				},
+				deep:true
+			}
 		},
 		mounted: function(){
 			this.initAddress();
@@ -101,6 +111,7 @@
 						this.addressForm.receiver = this.address[i].receiver;
 						this.addressForm.phone = this.address[i].phone;
 						this.addressForm.address = this.address[i].address;
+						break;
 					}else{
 						this.addressForm.receiver = this.address[0].receiver;
 						this.addressForm.phone = this.address[0].phone;
@@ -108,9 +119,15 @@
 					}
 				}
 			},
+			//进入我的收货地址页
 			enterMyAddress: function(){
 				this.$router.push('/myAddress');
-			}
+			},
+			//点击提交订单
+			submitDetailOrder: function(){
+	        	MessageBox.alert('购买成功','提示');
+	        	this.$router.push('order');
+	        }
 		}
 	}
 </script>

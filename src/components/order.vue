@@ -124,9 +124,9 @@ export default {
       }
     },
     computed:{
-        orders(){
+        orders: function(){
             var keyCode = this.$store.state.keyCode;
-            // console.log('aaa',this.$store.state.orders,keyCode)
+            console.log('aaa',this.$store.state.orders[keyCode],keyCode)
             return this.$store.state.orders[keyCode];    
         },
     },

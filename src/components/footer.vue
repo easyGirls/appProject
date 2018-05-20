@@ -11,14 +11,14 @@
         	<div>文章</div>
       	</router-link>
       	
-        <router-link class="nav-item" :to="{name:'orderDetail'}" tag="li">
+        <!-- <router-link class="nav-item" :to="{name:'orderDetail'}" tag="li">
           <i class="iconfont icon-gouwuche"></i>
           <div>下单页</div>
-        </router-link>
-      	<!-- <router-link class="nav-item" :to="{name:'cart'}" tag="li">
+        </router-link> -->
+      	<router-link class="nav-item" :to="{name:'cart'}" tag="li">
        		<i class="iconfont icon-gouwuche"></i>
         	<div>购物车</div>
-      	</router-link> -->
+      	</router-link>
       	
       	<router-link class="nav-item" :to="{name:'my'}" tag="li">
        		<i class="iconfont icon-wode2"></i>

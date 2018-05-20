@@ -10,10 +10,13 @@ const store=new Vuex.Store({
         userInformation:localStorage["userInformation"]?JSON.parse(localStorage["userInformation"]): [],
         goodDetails:localStorage["goodDetails"]?JSON.parse(localStorage["goodDetails"]): [],
         carts:localStorage["carts"]?JSON.parse(localStorage["carts"]): [],
+        //下单成功的订单数组
         orders:localStorage["orders"]?JSON.parse(localStorage["orders"]): [],
         keyCode:localStorage["keyCode"]?JSON.parse(localStorage["keyCode"]): -1,
         //收货地址
-        address:localStorage["address"]?JSON.parse(localStorage["address"]): []
+        address:localStorage["address"]?JSON.parse(localStorage["address"]): [],
+        //保存点击编辑地址时收货地址数组的下标
+        addressIndex:localStorage["addressIndex"]?JSON.parse(localStorage["addressIndex"]): -1,
     },
     mutations:{
         //用户注册
@@ -46,7 +49,9 @@ const store=new Vuex.Store({
         //购物之后加入订单
         addorder:(state,data)=>{
             var index = state.keyCode;
-            state.orders[index].unshift(data);
+            //在购物车页面把传过来的改成了数组，原为对象
+            state.orders[index] = data;
+            // state.orders[index].unshift(data);
             // state.orders[index].unshift();
             localStorage.setItem("orders",JSON.stringify(state.orders));
             // state.orders.push(data);
