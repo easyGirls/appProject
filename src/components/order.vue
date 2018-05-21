@@ -9,7 +9,7 @@
             我的订单
         </div>
         <!-- 无订单状态 -->
-        <div class="orderimg" v-if="!orders.length">
+        <div class="orderimg" v-if="!myOrders.length">
             <img src="/static/img/dingdan.png" alt="订单">
             <p>您暂无订单</p>
         </div>
@@ -27,39 +27,49 @@
             <mt-tab-container v-model="selected" swipeable>
             <!-- 全部 -->
             <mt-tab-container-item id="tab-container1">
-                <ul>
-                    <li v-for="(order,index) in orders" class="orders">
-                    <div class="orderBox">
-                        <div class="ordeId">
-                            <span style="float: left;color:#666">
-                                <i class="iconfont icon-qijiandian"></i>
-                                家
-                            </span>
-                            <span style="float: right;margin-right: 0.2rem;color: #00acff;font-weight: 400;">交易成功</span>
-                        </div>
-                        <div class="orderOne">
-                            <div class="orderImage">
-                                <img v-bind:src="order.image" alt="手机图片">
+                <div>
+                    
+                    <ul>
+                        <li class="orders"  v-for='(item,index) in myOrders'>
+                            <div class="info">
+                                <p class="orderNum"><span>订单号：</span><span>{{ item.myOrdersNum}}</span></p>
+                                <p class="orderPerson"><span>收货人：</span><span>{{ item.receiver}}</span></p>
+                                <p class="orderPhone"><span>联系电话：</span><span>{{ item.phone}}</span></p>
+                                <p class="orderAddress"><span>收货地址：</span><span>{{ item.address}}</span></p>
+                                <p class="orderTime"><span>下单时间：</span><span>{{ item.myOrdersTime}}</span></p>
                             </div>
-                            <div class="_orderbox">
-                                <div class="orderName"><span>{{order.name}}</span></div>
-                                <div class="orderColor"><span>颜色:{{order.color}}</span></div>
-                                <div class="orderPrice"><span>￥{{order.price}}</span></div>
+                            <div class="orderBox"  v-for="order in item.productsData">
+                                <div class="ordeId">
+                                    <span style="float: left;color:#666">
+                                        <i class="iconfont icon-qijiandian"></i>
+                                        家
+                                    </span>
+                                    <span style="float: right;margin-right: 0.2rem;color: #00acff;font-weight: 400;">交易成功</span>
+                                </div>
+                                <div class="orderOne">
+                                    <div class="orderImage">
+                                        <img v-bind:src="order.imgone" alt="手机图片">
+                                    </div>
+                                    <div class="_orderbox">
+                                        <div class="orderName"><span>{{order.name}}</span></div>
+                                        <div class="orderColor"><span>颜色:{{order.color}}</span></div>
+                                        <div class="orderPrice"><span>￥{{order.price}}</span></div>
+                                    </div>
+                                    <p >×{{order.value}}</p>
+                                </div>
+                                
                             </div>
-                            <p >×{{order.value}}</p>
-                        </div>
-
-                        <div class="orderTwo">
-                            <div class="_Order" @click="odefault(index)">
-                                <a>删除订单</a>
+                            <div class="orderTwo">
+                                <div class="_Order" @click="odefault(index)">
+                                    <a>删除订单</a>
+                                </div>
+                                <div class="_Total">
+                                    共<span>{{item.count}}</span>件商品 总计:<span>￥{{item.sumPrice}}</span>
+                                </div>
                             </div>
-                            <div class="_Total">
-                                共<span>{{order.value}}</span>件商品 总计:<span>￥{{order.value*order.price}}</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul> 
+                        </li>
+                    </ul>
+                </div> 
         </mt-tab-container-item>
         <!-- 未付款 -->
         <mt-tab-container-item id="tab-container2">
@@ -68,9 +78,9 @@
           </ul>
         </mt-tab-container-item>
         <!-- 已发货 -->
-        <mt-tab-container-item id="tab-container3">
+        <!-- <mt-tab-container-item id="tab-container3">
           <ul>
-                <li v-for="(order,index) in orders" class="orders">
+                <li v-for="(order,index) in myOrders.productsData" class="orders">
                     <div class="orderBox">
                         <div class="ordeId">
                             <span style="float: left;color:#666">
@@ -102,7 +112,7 @@
                     </div>
                 </li>
             </ul>
-        </mt-tab-container-item>
+        </mt-tab-container-item> -->
         <!-- 已完成 -->
         <mt-tab-container-item id="tab-container4">
           <ul style="margin-top: 2px;">
@@ -124,10 +134,10 @@ export default {
       }
     },
     computed:{
-        orders: function(){
+        myOrders: function(){
             var keyCode = this.$store.state.keyCode;
-            console.log('aaa',this.$store.state.orders[keyCode],keyCode)
-            return this.$store.state.orders[keyCode];    
+            console.log('aaa',this.$store.state.myOrders[keyCode],keyCode)
+            return this.$store.state.myOrders[keyCode];    
         },
     },
     methods:{
@@ -217,8 +227,8 @@ export default {
     margin-right: 0.3rem;
 }
 .orderBox{
-    margin-top: 0.2rem;
-    height: 6.1rem;
+    /*margin-top: 0.2rem;*/
+    height: 4.1rem;
 }
 .orderOne{
     width: 100%;
@@ -233,7 +243,7 @@ export default {
     border-top: 1px solid #cccccc;
 }
 .orderTwo{
-    float: right;
+    /*float: right;*/
 }
 .orderTwo span{
     color: red;
@@ -274,6 +284,33 @@ export default {
 .orderOne>p{
     color: #888;
 }
-    
+.info{
+    padding-top: 0.3rem;
+    font-size: 0.32rem;
+    box-sizing: border-box;
+    background: #fff;
+}
+.orderNum,.orderPerson,.orderPhone{
+    float: left;
+    line-height: 0.5rem;
+    box-sizing: border-box;
+}
+.orderNum{
+    width: 35%;
+    padding-left: 0.3rem;
+}
+.orderPerson{
+    width: 20%;
+}
+.orderPhone{
+    width: 40%;
+    padding-left: 0rem;
+}
+.orderAddress,.orderTime{
+    clear: left;
+    padding-left: 0.3rem;
+    box-sizing: border-box;
+    line-height: 0.5rem;
+}
 </style>
 

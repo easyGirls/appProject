@@ -10,8 +10,10 @@ const store=new Vuex.Store({
         userInformation:localStorage["userInformation"]?JSON.parse(localStorage["userInformation"]): [],
         goodDetails:localStorage["goodDetails"]?JSON.parse(localStorage["goodDetails"]): [],
         carts:localStorage["carts"]?JSON.parse(localStorage["carts"]): [],
-        //下单成功的订单数组
+        //下单页面的订单数组
         orders:localStorage["orders"]?JSON.parse(localStorage["orders"]): [],
+        //下单成功  我的订单
+        myOrders:localStorage["myOrders"]?JSON.parse(localStorage["myOrders"]): [],
         keyCode:localStorage["keyCode"]?JSON.parse(localStorage["keyCode"]): -1,
         //收货地址
         address:localStorage["address"]?JSON.parse(localStorage["address"]): [],
@@ -28,6 +30,9 @@ const store=new Vuex.Store({
             //注册用户时，为每个用户创建一个订单
             var orderData = [];
             state.orders.push(orderData);
+            //我的订单
+            var myOrderData = [];
+            state.myOrders.push(myOrderData);
             //注册用户时，为每个用户创建一个收货地址数组
             var address = [];
             state.address.push(address);
@@ -35,6 +40,7 @@ const store=new Vuex.Store({
             localStorage.setItem("carts",JSON.stringify(state.carts));
             localStorage.setItem("orders",JSON.stringify(state.orders));
             localStorage.setItem("address",JSON.stringify(state.address));
+            localStorage.setItem("myOrders",JSON.stringify(state.myOrders));
         },
         //加入购物车
         addcarts:(state,data)=>{
@@ -74,8 +80,9 @@ const store=new Vuex.Store({
         //订单删除
         odefault:(state,index)=>{
             MessageBox.confirm('确定删除该订单么？').then(action=>{
-                state.orders[state.keyCode].splice(index,1);
-                localStorage.setItem("orders",JSON.stringify(state.orders));
+                console.log('订单下标',index, state.myOrders[state.keyCode][index])
+                state.myOrders[state.keyCode].splice(index,1);
+                localStorage.setItem("myOrders",JSON.stringify(state.myOrders));
             })
         },
 

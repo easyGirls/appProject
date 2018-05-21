@@ -132,11 +132,10 @@ import store from '../vuex/store.js';
         // 点击按钮时，首先判断该商品是否在购物车已存在，如果存在则不再加入
         add:function(index){
             if(this.$store.state.keyCode != -1){
-               	// alert(0)
-                   var idExist=this.$store.state.carts.find((todo)=>{
+               	console.log('this.goodDetails',this.goodDetails)
+                   var idExist=this.$store.state.carts[this.$store.state.keyCode].find((todo)=>{
                       return todo.id==this.goodDetails[index].id;
                     })
-               
                  if(!idExist){
                         var data={
                             // checked: false,
@@ -164,20 +163,20 @@ import store from '../vuex/store.js';
             },
             pay:function(index){
               if(this.$store.state.keyCode != -1){
-                Toast({ message: `成功支付了${this.paid}元`, iconClass: 'iconfont icon-goumaichenggong' ,duration: 750});
+                // Toast({ message: `成功支付了${this.paid}元`, iconClass: 'iconfont icon-goumaichenggong' ,duration: 750});
                 // alert(`成功支付了${this.paid}元`)
-                    var data={
+                    var data= [];
+                    data.push({
                         id:this.goodDetails[index].id,
                         name:this.goodDetails[index].name,
                         price:this.goodDetails[index].price,
-                        image:this.goodDetails[index].imgone,
-                        value:this.goodDetails[index].value,
-                        order:this.goodDetails[index].order,
-                        color:this.goodDetails[index].color,
-                        number:this.goodDetails[index].number,
-                        
-                    }
+                        imgone:this.goodDetails[index].imgone,
+                        value:this.goodDetails[index].value  
+                    })
                     this.$store.commit("addorder",data);
+                    this.$router.push('/orderDetail');
+              }else{
+                this.$router.push('/login');
               }
             }
         }

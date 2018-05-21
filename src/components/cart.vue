@@ -18,7 +18,8 @@
 
                     <!-- 购物车商品信息 -->
                     <div class="cartInformation">
-                        <div class="cartName">{{cart.name}}
+                        <div class="cartName">
+                            <span class="productName">{{cart.name}}</span>
                             <a href="javascript:;" class="iconfont icon-huishouzhan7"  @click="shanchu(index)" ></a>
                         </div>
                         <p class="cartPrice">￥{{cart.price}}</p>
@@ -47,7 +48,8 @@
                     <div class="Total">合计：<span style="font-size: 0.54rem;color:#E3211E">￥{{this.sum()}}</span></div>
                 </div>
                 <div class="Settlementtwo" @click="submitOrder">
-                    <router-link :to="{name:'orderDetail'}" >结算</router-link>
+                    结算
+                    <!-- <router-link :to="{name:'orderDetail'}" >结算</router-link> -->
                 </div>
             </div>
         </div>
@@ -56,6 +58,7 @@
 
 <script>
     import { Toast } from 'mint-ui';
+    import { MessageBox } from 'mint-ui';
     import store from '../vuex/store.js'; 
     import { mapState,mapMutations,mapGetters  } from 'vuex';
     export default {
@@ -143,17 +146,22 @@
                             id:this.carts[i].id,
                             name:this.carts[i].name,
                             price:this.carts[i].price,
-                            image:this.carts[i].imgone,
+                            imgone:this.carts[i].imgone,
                             value:this.carts[i].value,
-                            order:this.carts[i].order,
-                            color:this.carts[i].color,
-                            number:this.carts[i].number,
+                            // order:this.carts[i].order,
+                            // color:this.carts[i].color,
+                            // number:this.carts[i].number,
                             
                         }
                         orderData.push(data);
                     }
                 }
                 this.$store.commit("addorder",orderData);
+                if(orderData.length > 0){
+                    this.$router.push('/orderDetail');
+                }else{
+                    MessageBox.alert('请选择商品','提示');
+                }
             }
         },
         
@@ -340,11 +348,18 @@
         background: #E3211E;
         float: right;
     }
-    .Settlement a,.Settlementtwo a{
+    .Settlement,.Settlementtwo{
         color: white;
         text-align: center;
         line-height: 1.18rem;
         display: block;
         font-size: 0.35rem;
+    }
+    .productName{
+        display: inline-block;
+        width: 74%;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
     }
 </style>

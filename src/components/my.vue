@@ -37,11 +37,10 @@
     },
     methods:{
       exit: function(){
-          localStorage.removeItem("userInformation");
-          localStorage.removeItem("goodDetails");
-          localStorage.removeItem("carts");
-          localStorage.removeItem("orders");
-          localStorage.removeItem("address");
+          // localStorage.removeItem("userInformation");
+          // localStorage.removeItem("carts");
+          // localStorage.removeItem("orders");
+          // localStorage.removeItem("address");
           localStorage.removeItem("keyCode");
           this.$store.state.keyCode = -1;
           console.log('userInformation',this.$store.state.userInformation);
