@@ -18,6 +18,7 @@ import login from '@/components/login'             //导入"登录"页
 import addAddress from '@/components/addAddress'   //导入新增地址页
 import myAddress from '@/components/myAddress'   //导入我的收货地址页
 import editAddress from '@/components/editAddress'   //导入编辑地址页
+import editUserInfo from '@/components/editUserInfo'   //导入编辑地址页
 import store from '../vuex/store.js';
 Vue.use(Router)                                    //初始化路由信息
 
@@ -35,6 +36,7 @@ export const router = new Router({
     { path: '/myAddress',name: 'myAddress',component: myAddress },
     { path: '/editAddress',name: 'editAddress',component: editAddress },
     { path: '/author', name: 'author',component: author },
+    { path: '/editUserInfo', name: 'editUserInfo',component: editUserInfo },
     { path: '/bedding' ,name:'bedding' ,component:bedding},
     { path: '/information' ,name:'information' ,component:information},
     { path: '/news' ,name:'news' ,component:news},

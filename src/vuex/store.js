@@ -19,6 +19,8 @@ const store=new Vuex.Store({
         address:localStorage["address"]?JSON.parse(localStorage["address"]): [],
         //保存点击编辑地址时收货地址数组的下标
         addressIndex:localStorage["addressIndex"]?JSON.parse(localStorage["addressIndex"]): -1,
+        //保存编辑个人信息标识状态
+        status2: localStorage["status2"]?JSON.parse(localStorage["status2"]): -1,
     },
     mutations:{
         //用户注册

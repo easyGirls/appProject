@@ -209,7 +209,7 @@
 		 	//点击注册
 		 	registerSubmit:function(){
 		 		if(this.usernameKey === true && this.emailKey=== true && this.phoneKey=== true && this.passwordKey=== true  && this.dbpasswordKey=== true){
-			 		var registerData = { username:this.rulesForm.username,email:this.rulesForm.email,password:this.rulesForm.password,phone:this.rulesForm.phone } 
+			 		var registerData = { username:this.rulesForm.username,email:this.rulesForm.email,password:this.rulesForm.password,phone:this.rulesForm.phone,sex: '',age: '' } 
 					this.$store.commit('userInformationMutation',registerData);
 					MessageBox.alert('注册成功','提示');
 					this.rulesForm.username = '';

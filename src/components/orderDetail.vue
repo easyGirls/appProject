@@ -129,54 +129,58 @@
 			},
 			//点击提交订单
 			submitDetailOrder: function(){
-				var date = new Date();
-				var year = date.getFullYear();
-				var month = date.getMonth()+1;
-				var day = date.getDate();
-				var hour = date.getHours();
-				var minute = date.getMinutes();
-				var second = date.getSeconds();
-				if(month < 10){
-					month = '0' + month;
-				}
-				if(day < 10){
-					day = '0' + day;
-				}
-				if(minute < 10){
-					minute = '0' + minute;
-				}
-				if(second < 10){
-					second = '0' + second;
-				}
-				//下单时间
-				var myOrdersTime = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
-				//订单号
-				var myOrdersNum ='B'+ Math.floor(Math.random()*100000+100000);
-				//计算商品总件数和总金额，为方便我的订单显示
-				var count = 0,sumPrice2 = 0;
-				for(var n=0;n<this.orders.length;n++){
-					count += this.orders[n].value;
-					sumPrice2 += this.orders[n].value*this.orders[n].price;;
-				}
-				this.myOrders.unshift({ receiver: this.addressForm.receiver,phone: this.addressForm.phone,address: this.addressForm.address,myOrdersTime: myOrdersTime,myOrdersNum: myOrdersNum,count:count,sumPrice:sumPrice2,productsData: this.orders });
-				// console.log('wo di ding dan',this.myOrders,this.$store.state.myOrders);
-				localStorage.setItem("myOrders",JSON.stringify(this.$store.state.myOrders));
-				//购买成功后删除购物车商品
-				var cartsData = this.carts;
-				for(var i=0;i<this.carts.length;i++){
-					for(var j=0;j<this.orders.length;j++){
-						if(this.orders[j].id === this.carts[i].id){
-							// console.log('111111111111')
-							cartsData.splice(i,1);
-							//不能直接对this.carts进行删除数据，否则循环出错
+				if(this.address.length === 0){
+					MessageBox.alert('请填写收货信息','提示');
+				}else{
+					var date = new Date();
+					var year = date.getFullYear();
+					var month = date.getMonth()+1;
+					var day = date.getDate();
+					var hour = date.getHours();
+					var minute = date.getMinutes();
+					var second = date.getSeconds();
+					if(month < 10){
+						month = '0' + month;
+					}
+					if(day < 10){
+						day = '0' + day;
+					}
+					if(minute < 10){
+						minute = '0' + minute;
+					}
+					if(second < 10){
+						second = '0' + second;
+					}
+					//下单时间
+					var myOrdersTime = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
+					//订单号
+					var myOrdersNum ='B'+ Math.floor(Math.random()*100000+100000);
+					//计算商品总件数和总金额，为方便我的订单显示
+					var count = 0,sumPrice2 = 0;
+					for(var n=0;n<this.orders.length;n++){
+						count += this.orders[n].value;
+						sumPrice2 += this.orders[n].value*this.orders[n].price;;
+					}
+					this.myOrders.unshift({ receiver: this.addressForm.receiver,phone: this.addressForm.phone,address: this.addressForm.address,myOrdersTime: myOrdersTime,myOrdersNum: myOrdersNum,count:count,sumPrice:sumPrice2,productsData: this.orders });
+					// console.log('wo di ding dan',this.myOrders,this.$store.state.myOrders);
+					localStorage.setItem("myOrders",JSON.stringify(this.$store.state.myOrders));
+					//购买成功后删除购物车商品
+					var cartsData = this.carts;
+					for(var i=0;i<this.carts.length;i++){
+						for(var j=0;j<this.orders.length;j++){
+							if(this.orders[j].id === this.carts[i].id){
+								// console.log('111111111111')
+								cartsData.splice(i,1);
+								//不能直接对this.carts进行删除数据，否则循环出错
+							}
 						}
 					}
-				}
-				this.carts = cartsData;
-				localStorage.setItem("carts",JSON.stringify(this.$store.state.carts));
-				// console.log('我的购物车',this.orders,this.carts,this.$store.state.carts);
-	        	MessageBox.alert('购买成功','提示');
-	        	this.$router.push('/order');
+					this.carts = cartsData;
+					localStorage.setItem("carts",JSON.stringify(this.$store.state.carts));
+					// console.log('我的购物车',this.orders,this.carts,this.$store.state.carts);
+		        	MessageBox.alert('购买成功','提示');
+		        	this.$router.push('/order');
+		        }
 	        }
 		}
 	}

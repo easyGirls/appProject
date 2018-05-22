@@ -17,7 +17,7 @@
       <div class="myCollection" @click="author">
         <div class="Order">
           <i class="iconfont icon-zuozhe"></i>
-          <p>个人资料</p>
+          <p>个人信息</p>
         </div>
       </div>
     </div> 
@@ -43,7 +43,7 @@
           // localStorage.removeItem("address");
           localStorage.removeItem("keyCode");
           this.$store.state.keyCode = -1;
-          console.log('userInformation',this.$store.state.userInformation);
+          // console.log('userInformation',this.$store.state.userInformation);
           this.$router.push('/login');
       },
       order:function(){
