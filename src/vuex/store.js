@@ -21,6 +21,8 @@ const store=new Vuex.Store({
         addressIndex:localStorage["addressIndex"]?JSON.parse(localStorage["addressIndex"]): -1,
         //保存编辑个人信息标识状态
         status2: localStorage["status2"]?JSON.parse(localStorage["status2"]): -1,
+        //收藏
+        collectProduct: localStorage["collectProduct"]?JSON.parse(localStorage["collectProduct"]): [],
     },
     mutations:{
         //用户注册
@@ -38,11 +40,16 @@ const store=new Vuex.Store({
             //注册用户时，为每个用户创建一个收货地址数组
             var address = [];
             state.address.push(address);
+            //收藏
+            var myCollection = [];
+            state.collectProduct.push(myCollection);
+
             localStorage.setItem("userInformation",JSON.stringify(state.userInformation));
             localStorage.setItem("carts",JSON.stringify(state.carts));
             localStorage.setItem("orders",JSON.stringify(state.orders));
             localStorage.setItem("address",JSON.stringify(state.address));
             localStorage.setItem("myOrders",JSON.stringify(state.myOrders));
+            localStorage.setItem("collectProduct",JSON.stringify(state.collectProduct));
         },
         //加入购物车
         addcarts:(state,data)=>{
@@ -101,7 +108,11 @@ const store=new Vuex.Store({
                 state.carts[state.keyCode][index].value--;
             }
             localStorage.setItem("carts",JSON.stringify(state.carts));
-        },       
+        }, 
+        //收藏
+        collectProduct:(state,goodDetails)=>{
+
+        }      
     },
     getters:{
         // sum:state=>{

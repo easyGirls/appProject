@@ -25,14 +25,17 @@
         			<div class="gooDetailNumber">商品编号：{{goodDetail.number}}</div>
             		<div class="goodDetailName">{{goodDetail.name}}</div>
             		<div class="goodDetailColor">{{goodDetail.color}}</div>
-            		<div class="goodDetailPaid">￥ {{goodDetail.price}}</div></div>                    
+            		<div class="goodDetailPaid">￥ {{goodDetail.price}}</div>
+                <span class="collectProduct" @click="collection"><i class="iconfont icon-shoucang"></i></span>
+              </div> 
+                                 
           			<div class="goodDetailValue">
             			<div class="_Value">购买数量：</div>
             			<div class="_cartNumber" style="margin-left: 2rem;">
               				<a href="javascript:;" @click="jian(index)" class="goodDetailReduce">-</a>
               				<input type="text"   v-model="goodDetail.value" readonly="readonly"/>
               				<a href="javascript:;" @click="jia(index)" class="goodDetailAdd">+</a>
-            			</div>
+            			</div>  
             		</div>
 
             		<div class="goodDetailBox">
@@ -110,12 +113,12 @@ import store from '../vuex/store.js';
       	getData:function(){
         	var id = this.$route.query.id;
           	var _this = this;
-            this.$http.get("/static/goodDetail.json").then(function(res) {                      
+            this.$http.get("/static/goodDetail.json").then(function(res) {           
                 for (var i = 0; i < res.body.goodDetails.length; i++) {
                 		if (res.body.goodDetails[i].id == id) {
                 			_this.goodDetails.push(res.body.goodDetails[i])
-              		}
-            	}
+              		  }
+            	  }
           	})
         },
         //购买数量的加减
@@ -132,7 +135,7 @@ import store from '../vuex/store.js';
         // 点击按钮时，首先判断该商品是否在购物车已存在，如果存在则不再加入
         add:function(index){
             if(this.$store.state.keyCode != -1){
-               	console.log('this.goodDetails',this.goodDetails)
+               	// console.log('this.goodDetails',this.goodDetails)
                    var idExist=this.$store.state.carts[this.$store.state.keyCode].find((todo)=>{
                       return todo.id==this.goodDetails[index].id;
                     })
@@ -178,6 +181,11 @@ import store from '../vuex/store.js';
               }else{
                 this.$router.push('/login');
               }
+            },
+            collection: function(){
+              alert(0)
+              console.log('aaaa',this.goodDetails)
+                this.$store.commit('collectProduct',this.goodDetails);
             }
         }
     }
@@ -345,5 +353,10 @@ import store from '../vuex/store.js';
    .goodDetailColor{
        display: none
    }
-   
+   .collectProduct{
+       position: absolute;
+       display: block;
+       right: 0.8rem;
+       top: 11.6rem;
+   }
 </style>
