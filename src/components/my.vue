@@ -14,10 +14,16 @@
           <p>我的订单</p>
         </div>
       </div>
-      <div class="myCollection" @click="author">
+      <div class="myInfomation" @click="author">
         <div class="Order">
           <i class="iconfont icon-zuozhe"></i>
           <p>个人信息</p>
+        </div>
+      </div>
+      <div class="myInfomation" @click="myCollection">
+        <div class="Order">
+          <i class="iconfont icon-shoucang"></i>
+          <p>我的收藏</p>
         </div>
       </div>
     </div> 
@@ -51,6 +57,9 @@
       },
       author:function(){
           this.$router.push('/author')
+      },
+      myCollection: function(){
+          this.$router.push('/myCollection');
       }
     }
   }
@@ -80,16 +89,19 @@
    }
     .MyBox{
         width: 100%;
-        height: 110px;
+        height: 165px;
         background: white;
     }
-    .myOrder,.myCollection{
-        height: 50%;
+    .myOrder,.myCollection,.myInfomation{
+        height: 33%;
+    }
+    .myInfomation,.myCollection{
+      clear: left;
     }
    .Main, .Order{
-       height: 100%;
-       /* background: red; */
-       margin-left: 10px;
+       /*height: 100%;*/
+        /*background: #fff; */
+       padding-left: 10px;
        border-bottom: 1px solid #cccccc;
    }
    .myMain img{
@@ -103,7 +115,7 @@
         line-height: 75px;
     }
   
-   .Order i , .Order p{
+   .Order i , .Order p,.collection i,.collection p{
        display: block;
        line-height: 55px;
        float: left;

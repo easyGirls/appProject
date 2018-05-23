@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex, { Store } from 'Vuex'
 import { MessageBox } from 'mint-ui';
+import { Toast } from 'mint-ui';
 
 Vue.use(Vuex);
 
@@ -111,7 +112,22 @@ const store=new Vuex.Store({
         }, 
         //收藏
         collectProduct:(state,goodDetails)=>{
-
+            var id = [];
+            //找到所有的id存到id数组里面
+            for(var i=0;i<state.collectProduct[state.keyCode].length;i++){
+                id.push(state.collectProduct[state.keyCode][i].id);
+            }
+            if(id.indexOf(goodDetails.id) === -1){
+                state.collectProduct[state.keyCode].unshift(goodDetails);
+                localStorage.setItem("collectProduct",JSON.stringify(state.collectProduct));
+                Toast({
+                        message:"收藏成功",iconClass:"iconfont icon-goumaichenggong-copy",duration: 950
+                    })
+            }else{
+                Toast({
+                        message:"商品已收藏",iconClass:"iconfont icon-goumaichenggong-copy",duration: 950
+                    })
+            }  
         }      
     },
     getters:{

@@ -183,9 +183,8 @@ import store from '../vuex/store.js';
               }
             },
             collection: function(){
-              alert(0)
-              console.log('aaaa',this.goodDetails)
-                this.$store.commit('collectProduct',this.goodDetails);
+              // console.log('aaaa',this.goodDetails)
+              this.$store.commit('collectProduct',this.goodDetails[0]);
             }
         }
     }

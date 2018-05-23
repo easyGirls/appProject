@@ -14,7 +14,7 @@
           <!-- <span class="editUserInfo" @click="editUserInfo(userInformation.username)"><i class="iconfont icon-zuozhe"></i></span> -->
         </p>
         <p class="field"><span>性别：</span>{{ userInformation.sex }}<span class="editUserInfo" @click="editUserInfo(0)"><i class="iconfont icon-zuozhe"></i></span></p>
-        <p class="field"><span>年龄：</span>{{ userInformation.age }}<span class="editUserInfo" @click="openPicker"><i class="iconfont icon-zuozhe"></i></span></p>
+        <p class="field"><span>出生日期：</span>{{ userInformation.age }}<span class="editUserInfo" @click="openPicker"><i class="iconfont icon-zuozhe"></i></span></p>
         <!-- 不能直接用v-model="userInformation.age"，否则刷新得到的是未经处理的时间 -->
         <mt-datetime-picker
           ref="picker"

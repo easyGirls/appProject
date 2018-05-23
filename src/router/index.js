@@ -19,6 +19,7 @@ import addAddress from '@/components/addAddress'   //导入新增地址页
 import myAddress from '@/components/myAddress'   //导入我的收货地址页
 import editAddress from '@/components/editAddress'   //导入编辑地址页
 import editUserInfo from '@/components/editUserInfo'   //导入编辑地址页
+import myCollection from '@/components/myCollection'   //导入我的收藏页
 import store from '../vuex/store.js';
 Vue.use(Router)                                    //初始化路由信息
 
@@ -27,7 +28,8 @@ export const router = new Router({
   routes: [
     { path: '/',name: 'Home',component: Home },
     { path: '/Home',name: 'Home', component: Home},
-    { path: '/cart',name: 'cart',component: cart },
+    { path: '/cart',name: 'cart',component: cart, meta: { requireAuth: false  // 添加该字段，表示进入这个路由是需要登录的
+    }},
     { path: '/my',name: 'my',component: my },
     { path: '/goodDetail', name: 'goodDetail',component: goodDetail },
     { path: '/order',name: 'order',component: order },
@@ -39,6 +41,7 @@ export const router = new Router({
     { path: '/editUserInfo', name: 'editUserInfo',component: editUserInfo },
     { path: '/bedding' ,name:'bedding' ,component:bedding},
     { path: '/information' ,name:'information' ,component:information},
+    { path: '/myCollection' ,name:'myCollection' ,component:myCollection},
     { path: '/news' ,name:'news' ,component:news},
     { path: '/sofas' ,name:'sofas' ,component:sofas},
     { path: '/register' ,name:'register' ,component:register},
